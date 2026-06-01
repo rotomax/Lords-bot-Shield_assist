@@ -1,8 +1,7 @@
 # LordsBot — Shield-Only Test Build
 
 A small Python automation bot for **Lords Mobile PC** that keeps a turf
-shield active on your own account. This is a community / tester build of
-a larger personal project, stripped down to a single job so other players
+shield active on your own account. This is a personal project based on Satyajeet-kuma4's advanced bot, stripped down to a single job so other players
 can try it out and give feedback.
 
 ## What it does
@@ -21,7 +20,7 @@ shield maintenance.
 
 ## ⚠ Disclaimer
 
-This is a **community hobby project**. It is not affiliated with, endorsed
+This is a **personal hobby project**. It is not affiliated with, endorsed
 by, or supported by IGG or Lords Mobile. Automating gameplay may violate
 the game's Terms of Service. By using this software you accept all risk
 to your account. The authors and contributors accept no responsibility
@@ -39,7 +38,7 @@ calibration — see below)
 
 ## Installation
 
-### 1\. Install Python
+### 1. Install Python
 
 If you don't already have it, download **Python 3.11** from
 [python.org/downloads/windows](https://www.python.org/downloads/windows/).
@@ -51,7 +50,7 @@ Confirm it works by opening Command Prompt and running:
 python --version
 ```
 
-### 2\. Install Tesseract OCR
+### 2. Install Tesseract OCR
 
 The bot reads the shield countdown using OCR, which requires Tesseract to
 be installed separately from Python.
@@ -59,18 +58,11 @@ be installed separately from Python.
 1. Download the Windows installer from the UB-Mannheim build:
 [https://github.com/UB-Mannheim/tesseract/wiki](https://github.com/UB-Mannheim/tesseract/wiki)
 2. Run the installer. The default install location is
-`C:\\Program Files\\Tesseract-OCR\\` — keep it there if you can; the bot
+`C:\Program Files\Tesseract-OCR\` — keep it there if you can; the bot
 looks for it at that path by default.
-3. If you install it somewhere else, edit `TESSERACT\_CMD` in `config.py`.
+3. If you install it somewhere else, edit `TESSERACT_CMD` in `config.py`.
 
-### 3\. Download the bot
-
-```
-git clone https://github.com/yourname/lordsbot-shield.git
-cd lordsbot-shield
-```
-
-(Or download the ZIP from GitHub and extract it.)
+### 3. Download the bot
 
 ### 4\. Install Python dependencies
 
@@ -85,7 +77,7 @@ most likely need to change are at the top of the **Game / Emulator**
 section:
 
 ```
-GAME\_EXE\_PATH = r"C:\\Users\\YourUserName\\AppData\\Roaming\\IGG\\Lords Mobile PC\\Lords Mobile Updater.exe"
+GAME_EXE_PATH = r"C:\\Users\\YourUserName\\AppData\\Roaming\\IGG\\Lords Mobile PC\\Lords Mobile Updater.exe"
 ```
 
 Replace `YourUserName` with your Windows username. If your install is in
@@ -93,15 +85,15 @@ a different location, point this to wherever `Lords Mobile Updater.exe`
 lives.
 
 ```
-SHIELD\_DURATION\_HOURS = 4
-SHIELD\_HOUR\_IMAGE     = "shield4h.png"
+SHIELD_DURATION_HOURS = 4
+SHIELD_HOUR_IMAGE     = "shield4h.png"
 ```
 
 If you'd rather use 8-hour shields, change both:
 
 ```
-SHIELD\_DURATION\_HOURS = 8
-SHIELD\_HOUR\_IMAGE     = "shield8h.png"
+SHIELD_DURATION_HOURS = 8
+SHIELD_HOUR_IMAGE     = "shield8h.png"
 ```
 
 Save and close.
@@ -117,6 +109,8 @@ exact position at startup.
 If you're on a different resolution and willing to calibrate, see the
 "Different resolution" section under Troubleshooting below.
 
+Turn off power saving settings so the PC doesn't go to sleep after some time. the monitor can be turned off. 
+
 ## Running the bot
 
 1. **Open Lords Mobile PC** and log in to your account. Get to the home
@@ -130,7 +124,7 @@ folder, "Open in Terminal" or "Open command window here").
 
 ```
    python main.py
-   ```
+ ```
 
 The bot will check the game is open, navigate to the home screen, read
 your current shield timer, and apply a shield if needed. Then it will
@@ -141,13 +135,13 @@ the command prompt window.
 
 ### First run — what to watch
 
-* Tail `bot.log` (open it in Notepad and refresh; or use `Get-Content bot.log -Wait` in PowerShell). You should see lines about:
+* open `bot.log` (open it in Notepad and refresh) You should see lines about:
 
   * Game window region detected
   * Popups dismissed
   * Shield Manager initialising
   * Shield timer reading (e.g. "Shield timer: 3h 59m 58s")
-* If a `debug\_\*.png` file is created in the bot folder, open it — it
+* If a `debug_*.png` file is created in the bot folder, open it — it
 shows what the bot saw at the moment something went wrong.
 
 ### Useful command-line options
@@ -185,7 +179,7 @@ close to expiring, the bot recovers immediately to protect it
 3. **After the wait**, dismisses the dialog, closes the game process,
 and relaunches it to start a fresh session
 
-You can change the 30-minute wait via `DISCONNECT\_RECOVERY\_DELAY\_MIN` in
+You can change the 30-minute wait via `DISCONNECT_RECOVERY_DELAY_MIN` in
 `config.py`. Set to 0 to recover instantly.
 
 ## Safety guarantees built into the code
@@ -204,7 +198,7 @@ another one — protecting you from wasting a shield item.
 
 ### The bot can't find the Turf Boost icon
 
-Check `debug\_boost\_panel.png` and `debug\_shield\_menu\_fail.png` in the bot
+Check `debug_boost_panel.png` and `debug_shield_menu_fail.png` in the bot
 folder — these show what the bot saw. Most common causes:
 
 * The game is in fullscreen instead of windowed mode
@@ -219,7 +213,7 @@ If the issue is resolution or coordinate-related, run `calibrate.py`
 Check the path in `config.py`:
 
 ```
-TESSERACT\_CMD = r"C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+TESSERACT_CMD = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 ```
 
 Make sure that file actually exists. If you installed Tesseract to a
@@ -241,8 +235,8 @@ If you can't use 1920×1080, you can calibrate:
 1. Run `python calibrate.py`
 2. Hover over the elements it asks about and press Enter
 3. Copy the coordinates it prints into the matching fields in `config.py`
-(`TURF\_BOOST\_FALLBACK\_POS`, `SHIELD\_ROW\_ARROW\_POS`,
-`SHIELD\_TIMER\_REGION`)
+(`TURF_BOOST_FALLBACK_POS`, `SHIELD_ROW_ARROW_POS`,
+`SHIELD_TIMER_REGION`)
 4. You may also need to recapture some of the PNG templates in `utils/`
 so they match how the game renders at your resolution — but try
 running first, the template matching may still work.
@@ -250,7 +244,7 @@ running first, the template matching may still work.
 ### The bot clicked something I didn't expect
 
 Stop the bot (`Ctrl+Shift+Q`), open `bot.log` and look at the last few
-lines for what the bot was trying to do. Open any `debug\_\*.png` files
+lines for what the bot was trying to do. Open any `debug_*.png` files
 to see what it saw. Then please report the issue (see below) with both
 the log lines and the screenshots — that's the fastest way to fix it.
 
@@ -262,27 +256,27 @@ config.py          All settings on a single BotConfig dataclass
 calibrate.py       Coordinate finder utility
 
 modules/
-  screen\_utils.py    Screenshots, OCR, template matching, clicking
-  timer\_tracker.py   Named countdown timers (the shield)
-  shield\_manager.py  Reads the shield timer; applies/refreshes shield
-  popup\_handler.py   Closes popups via the X (never the diamond)
-  page\_navigator.py  Detects which game screen is active
-  session\_monitor.py Disconnect detection and recovery
+  screen_utils.py    Screenshots, OCR, template matching, clicking
+  timer_tracker.py   Named countdown timers (the shield)
+  shield_manager.py  Reads the shield timer; applies/refreshes shield
+  popup_handler.py   Closes popups via the X (never the diamond)
+  page_navigator.py  Detects which game screen is active
+  session_monitor.py Disconnect detection and recovery
 
 utils/             Template PNGs the bot matches on screen
   shield1.png, shield4h.png, shield8h.png    Shield menu rows
   turfBoost0.png                              Boost icon
   use.png, ok.png                             Confirmation buttons
-  cross\_button1.png                           X close button on popups
-  close\_button.png                            Close button on disconnect dialog
-  cancel\_button.png                           Cancel on Quit Game dialog
+  cross_button1.png                           X close button on popups
+  close_button.png                            Close button on disconnect dialog
+  cancel_button.png                           Cancel on Quit Game dialog
   diamond.png                                 Diamond promo (DETECTION ONLY)
-  map.png, return\_castle.png, kvk\_map.png    Page-detection markers
-  lords\_icon.png                              Desktop icon (for launching)
+  map.png, return_castle.png, kvk_map.png    Page-detection markers
+  lords_icon.png                              Desktop icon (for launching)
 
 requirements.txt   Python dependencies
 bot.log            Runtime log (created on first run)
-debug\_\*.png        Diagnostic screenshots (created on failures)
+debug_*.png        Diagnostic screenshots (created on failures)
 ```
 
 ## License
