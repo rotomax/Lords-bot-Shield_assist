@@ -1,4 +1,6 @@
 # LordsMobile PC — Shield-Assist Test Build
+URL to download EXE: 
+https://drive.google.com/file/d/1SQmvZa8kLyrotJhvGiwv_u0TsHCXV906/view?usp=sharing
 
 A small Python automation for **Lords Mobile PC** that keeps a turf
 shield active on your own account. This is a personal build of a larger personal project from Satyajeet-kuma4, stripped down to a single job so other players
